@@ -1,0 +1,15 @@
+{
+	"name": "manas-datafactory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b3e24fe5-d12e-41b7-ac11-33a1b80eb96e",
+		"tenantId": "34952629-92bc-4f9a-9ac0-39fd35fec351"
+	}
+}
