@@ -5,17 +5,6 @@
 			"referenceName": "AzureSqlDatabase",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"shemaName": {
-				"type": "string"
-			},
-			"tableName": {
-				"type": "string"
-			},
-			"cdcColumn": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": []
