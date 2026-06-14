@@ -17,6 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * FROM @{pipeline().parameters.schemaName}.{pipeline().parameters.tableName} WHERE @{pipeline().parameters.cdc_column} > ",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -30,6 +34,17 @@
 				]
 			}
 		],
+		"parameters": {
+			"schemaName": {
+				"type": "string"
+			},
+			"tableName": {
+				"type": "string"
+			},
+			"cdc_column": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
