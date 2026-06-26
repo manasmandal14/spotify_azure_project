@@ -52,7 +52,7 @@
 					},
 					"activities": [
 						{
-							"name": "HTTP_Ingestion",
+							"name": "Copy data1",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -74,32 +74,11 @@
 										"type": "JsonReadSettings"
 									}
 								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "ds_github",
-									"type": "DatasetReference",
-									"parameters": {
-										"p_file": {
-											"value": "@item().file",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ds_ingest",
 									"type": "DatasetReference"
 								}
 							]
@@ -108,11 +87,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"p_file": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
