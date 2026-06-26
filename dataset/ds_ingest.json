@@ -1,0 +1,19 @@
+{
+	"name": "ds_ingest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw_folder_uber/ingestion",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {}
+	}
+}
