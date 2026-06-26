@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "files_array",
+				"name": "lookup_array_files",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -34,22 +34,11 @@
 				}
 			},
 			{
-				"name": "for_each_loop",
+				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "files_array",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@activity('files_array').output.value",
-						"type": "Expression"
-					},
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -74,30 +63,15 @@
 										"type": "JsonReadSettings"
 									}
 								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "ds_github",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ds_ingest",
 									"type": "DatasetReference",
 									"parameters": {
-										"p_file": {
-											"value": "@{item().value.file_name}.json",
+										"file_name": {
+											"value": "@item().value.file_name",
 											"type": "Expression"
 										}
 									}
