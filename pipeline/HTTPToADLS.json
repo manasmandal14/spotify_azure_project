@@ -36,9 +36,20 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "lookup_array_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('lookup_array_files').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -63,6 +74,15 @@
 										"type": "JsonReadSettings"
 									}
 								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -71,7 +91,19 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"file_name": {
-											"value": "@item().value.file_name",
+											"value": "@item().file_name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_ingest",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_file": {
+											"value": "@{item().value.file_name}.json",
 											"type": "Expression"
 										}
 									}
