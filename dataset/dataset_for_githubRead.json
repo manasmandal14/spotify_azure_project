@@ -1,0 +1,26 @@
+{
+	"name": "dataset_for_githubRead",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_github",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dynamic_source_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "anshlambagit/Uber_Data_Engineer_Project/refs/heads/main/Data/@{dataset().dynamic_source_name}.json",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
