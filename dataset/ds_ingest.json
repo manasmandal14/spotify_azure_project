@@ -5,11 +5,20 @@
 			"referenceName": "ls_datalake",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_file": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@{dataset().p_file}.json",
+					"type": "Expression"
+				},
 				"folderPath": "raw_folder_uber/ingestion",
 				"fileSystem": "bronze"
 			}
