@@ -1,0 +1,20 @@
+{
+	"name": "dataset_forWritingToADLSGen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "test.json",
+				"folderPath": "raw_folder_uber",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {}
+	}
+}
