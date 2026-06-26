@@ -90,8 +90,8 @@
 									"referenceName": "ds_github",
 									"type": "DatasetReference",
 									"parameters": {
-										"file_name": {
-											"value": "@item().file_name",
+										"p_file": {
+											"value": "@{item().file_name}.json",
 											"type": "Expression"
 										}
 									}
@@ -103,7 +103,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_file": {
-											"value": "@{item().value.file_name}.json",
+											"value": "@{item().file_name}.json",
 											"type": "Expression"
 										}
 									}

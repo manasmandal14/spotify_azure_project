@@ -19,7 +19,7 @@
 					"value": "@{dataset().p_file}.json",
 					"type": "Expression"
 				},
-				"folderPath": "raw_folder_uber/ingestion",
+				"folderPath": "raw_folder_uber",
 				"fileSystem": "bronze"
 			}
 		},
