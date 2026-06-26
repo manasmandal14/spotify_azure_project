@@ -16,7 +16,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "anshlambagit/Uber_Data_Engineer_Project/refs/heads/main/Data/@{dataset().dynamic_source_name}.json",
+					"value": "anshlambagit/Uber_Data_Engineer_Project/refs/heads/main/Data/@{dataset().dynamic_source_name}",
 					"type": "Expression"
 				}
 			}
