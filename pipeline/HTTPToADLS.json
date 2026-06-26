@@ -34,8 +34,8 @@
 				}
 			},
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "IterateJsonFiles",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "lookup_array_files",
@@ -44,60 +44,76 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "HttpReadSettings",
-							"requestMethod": "GET"
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
+					"items": {
+						"value": "@activity('lookup_array_files').output.value",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET"
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "dataset_for_githubRead",
+									"type": "DatasetReference",
+									"parameters": {
+										"dynamic_source_name": {
+											"value": "@activity('lookup_array_files').output.value[1].file_name1",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "dataset_forWritingToADLSGen2",
+									"type": "DatasetReference",
+									"parameters": {
+										"file_name": {
+											"value": "@activity('lookup_array_files').output.value[1].file_name1",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "dataset_for_githubRead",
-						"type": "DatasetReference",
-						"parameters": {
-							"dynamic_source_name": {
-								"value": "@activity('lookup_array_files').output.value[0].file_name1",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "dataset_forWritingToADLSGen2",
-						"type": "DatasetReference",
-						"parameters": {
-							"file_name": {
-								"value": "@activity('lookup_array_files').output.value[0].file_name",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					]
+				}
 			}
 		],
 		"annotations": []
